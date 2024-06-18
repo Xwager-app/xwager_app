@@ -36,26 +36,27 @@ class LastWelcome extends StatelessWidget {
               ],
             ),
             Container(
-              height: 270,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Create a xwager account and create your terms',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary,
-                          fontSize: 32,
+                          fontSize: 25,
                         ),
+                  ),
+                  const SizedBox(
+                    height: 25,
                   ),
                   Text(
                     'Invite your friends & get the game on',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary,
-                          fontSize: 32,
+                          fontSize: 25,
                         ),
                   )
                 ],
