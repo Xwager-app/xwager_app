@@ -1,5 +1,6 @@
 import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
+import "package:xwager/screens/auth/register.dart";
 
 class LastWelcome extends StatelessWidget {
   const LastWelcome({super.key});
@@ -80,7 +81,14 @@ class LastWelcome extends StatelessWidget {
                       ),
                       minimumSize: const Size(double.infinity, 36),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const Register(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Create an account',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -92,8 +100,8 @@ class LastWelcome extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                           vertical: 15, horizontal: 0),
                       backgroundColor: Colors.white,
@@ -120,39 +128,38 @@ class LastWelcome extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 0),
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
               child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text:
-                        'By creating an account, and using this app, you agree to Xwager’s ',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: const Color.fromRGBO(134, 134, 134, 0.7),
-                        fontSize: 14),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Privacy policy',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.w500),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // Define the action for the button
-                            print('Text button clicked');
-                          },
-                      ),
-                      const TextSpan(text: ' and'),
-                      TextSpan(
-                        text: ' Terms',
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.w500),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            // Define the action for the button
-                            print('Text button clicked');
-                          },
-                      ),
-                    ],
-                  )),
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text:
+                      'By creating an account, and using this app, you agree to Xwager’s ',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: const Color.fromRGBO(134, 134, 134, 0.7),
+                      fontSize: 14),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Privacy policy',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontWeight: FontWeight.w500),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          // Define the action for the button
+                        },
+                    ),
+                    const TextSpan(text: ' and'),
+                    TextSpan(
+                      text: ' Terms',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          fontWeight: FontWeight.w500),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          // Define the action for the button
+                        },
+                    ),
+                  ],
+                ),
+              ),
             )
           ],
         ),
