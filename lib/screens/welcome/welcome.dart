@@ -61,7 +61,7 @@ class _Welcome extends State<Welcome> {
                   alignment: Alignment.topRight,
                   children: [
                     Container(
-                      margin: const EdgeInsets.fromLTRB(0, 55, 15, 0),
+                      margin: const EdgeInsets.fromLTRB(0, 60, 15, 0),
                       child: Image.asset(
                         'assets/images/arrow_11.png',
                       ),
