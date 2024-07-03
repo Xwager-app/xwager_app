@@ -1,47 +1,22 @@
 import "package:flutter/material.dart";
-import "package:xwager/data/welcome_messages.dart";
+import "package:xwager/screens/carousel.dart";
 import "package:xwager/screens/welcome/last_welcome.dart";
 
-class Welcome extends StatefulWidget {
+class Welcome extends StatelessWidget {
   const Welcome({super.key});
 
   @override
-  State<Welcome> createState() {
-    return _Welcome();
-  }
-}
-
-class _Welcome extends State<Welcome> {
-  var currentPageIndex = 0;
-
-  void _navToNextPage() {
-    if (currentPageIndex == 2) {
+  Widget build(BuildContext context) {
+    void navToLastWelcome() {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (ctx) => const LastWelcome(),
         ),
       );
-      return;
     }
-    setState(() {
-      currentPageIndex += 1;
-    });
-  }
 
-  void _navToLastWelcome() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (ctx) => const LastWelcome(),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // Get the device width
-    double deviceWidth = MediaQuery.of(context).size.width;
+    // Get the device height
     double deviceHeight = MediaQuery.of(context).size.height;
 
     return SingleChildScrollView(
@@ -79,45 +54,8 @@ class _Welcome extends State<Welcome> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: deviceWidth *
-                        0.7, // Set width to 50% of the device width
-                    child: Column(
-                      children: [
-                        Text(
-                          messages[currentPageIndex].title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(fontSize: 32, color: Colors.white),
-                        ),
-                        Text(messages[currentPageIndex].text,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(color: Colors.white, fontSize: 16)),
-                        const SizedBox(
-                          height: 35,
-                        ),
-                        Row(
-                          children: [
-                            for (final (i, _) in messages.indexed)
-                              Container(
-                                width: i == currentPageIndex ? 20 : 15,
-                                height: i == currentPageIndex ? 20 : 15,
-                                margin: const EdgeInsets.only(right: 20),
-                                decoration: BoxDecoration(
-                                    color: i == currentPageIndex
-                                        ? Colors.white
-                                        : Colors.transparent,
-                                    border: Border.all(
-                                        color: Colors.white, width: 1),
-                                    borderRadius: BorderRadius.circular(50)),
-                              )
-                          ],
-                        ),
-                      ],
-                    ),
+                  const SizedBox(
+                    child: CarouselScreen(),
                   ),
                   const SizedBox(
                     height: 35,
@@ -133,7 +71,7 @@ class _Welcome extends State<Welcome> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        onPressed: _navToLastWelcome,
+                        onPressed: navToLastWelcome,
                         child: const Text(
                           'Skip',
                           style: TextStyle(
@@ -142,22 +80,6 @@ class _Welcome extends State<Welcome> {
                               color: Colors.white),
                         ),
                       ),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: _navToNextPage,
-                        style: IconButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor:
-                              Theme.of(context).colorScheme.onPrimary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        icon: const Icon(
-                          Icons.arrow_right_alt_outlined,
-                          size: 30,
-                        ),
-                      )
                     ],
                   ),
                   const SizedBox(
