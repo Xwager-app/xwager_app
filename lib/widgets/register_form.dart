@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:xwager/data/password_validators.dart";
+import "package:xwager/screens/auth/otp.dart";
 import "package:xwager/widgets/password_validator.dart";
 
 class RegisterForm extends StatefulWidget {
@@ -38,6 +39,13 @@ class _RegisterFormState extends State<RegisterForm> {
     print(_enteredEmailController.text);
     print(_enteredPasswordController.text);
     print(_enteredPasswordConfirmController.text);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => const OTPPinFieldScreen(),
+      ),
+    );
   }
 
   void _checkPasswordMatch() {
