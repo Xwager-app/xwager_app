@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:xwager/screens/auth/referral_code.dart';
 import 'package:xwager/widgets/custom_keyboard.dart';
 
 class CreateUniquePinScreen extends StatefulWidget {
@@ -41,92 +42,74 @@ class _CreateUniquePinScreenState extends State<CreateUniquePinScreen> {
   }
 
   void _showModal() {
-    if (!Platform.isIOS) {
-      showCupertinoDialog(
-          context: context,
-          builder: (ctx) => CupertinoAlertDialog(
-                title: const Text('invalid input'),
-                content: const Text(
-                    'Please make sure a valid title, amount, date and category was entered...'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(ctx);
-                    },
-                    child: const Text('Okay'),
-                  )
-                ],
-              ));
-    } else {
-      showDialog(
-        context: context,
-        builder: (ctx) => Dialog(
-          // backgroundColor: Colors.white,
-          child: Container(
-            width: 300,
-            // height: 200,
-            padding:
-                const EdgeInsets.only(top: 40, left: 15, right: 15, bottom: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset('assets/images/good.png'),
-                const SizedBox(height: 43),
-                Text(
-                  'Congratulations!',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+    showDialog(
+      context: context,
+      builder: (ctx) => Dialog(
+        // backgroundColor: Colors.white,
+        child: Container(
+          width: 300,
+          // height: 200,
+          padding:
+              const EdgeInsets.only(top: 40, left: 15, right: 15, bottom: 20),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset('assets/images/good.png'),
+              const SizedBox(height: 43),
+              Text(
+                'Congratulations!',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 35),
+              Text(
+                'Your new PIN has been successfully set.',
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.black, fontSize: 16),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+                  backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  minimumSize: const Size(double.infinity, 36),
                 ),
-                const SizedBox(height: 35),
-                Text(
-                  'Your new PIN has been successfully set.',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.black, fontSize: 16),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                    backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (ctx) => const ReferralCode(),
                     ),
-                    minimumSize: const Size(double.infinity, 36),
-                  ),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => const CreateUniquePinScreen(),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Next',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
+                  );
+                },
+                child: Text(
+                  'Next',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
 
   @override
