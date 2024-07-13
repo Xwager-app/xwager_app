@@ -308,7 +308,18 @@ class _RegisterFormState extends State<RegisterForm> {
               height: 20,
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  'Passwords must have the following:',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: const Color.fromRGBO(17, 17, 17, 1)),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
                 // for( final validator in passwordValidators)
                 ...passwordValidators.asMap().entries.map((entry) =>
                     PasswordValidators(
