@@ -11,7 +11,27 @@ class ProceedScreen extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: Image.asset('assets/images/proceed.png'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/proceed.png'),
+                const SizedBox(height: 20),
+                Text(
+                  'Welcome aboard',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'You have successfully verified your account. We\'re here to make your experience great.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: const Color.fromRGBO(17, 17, 17, 1), fontSize: 18),
+                )
+              ],
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
