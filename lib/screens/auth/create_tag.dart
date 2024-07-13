@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xwager/models/debouncer.dart';
 import 'package:circular_gradient_spinner/circular_gradient_spinner.dart';
+import 'package:xwager/screens/auth/create_unique_pin.dart';
 
 enum CheckTagState { notLoading, loading, taken, free }
 
@@ -150,6 +151,8 @@ class _CreateXwagerTagState extends State<CreateXwagerTagScreen> {
                             }
                           },
                           decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
                             errorText: _errorText,
                             prefixIcon: Icon(Icons.alternate_email,
                                 color: _errorText == null
@@ -210,7 +213,7 @@ class _CreateXwagerTagState extends State<CreateXwagerTagScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (ctx) => const CreateXwagerTagScreen(),
+                        builder: (ctx) => const CreateUniquePinScreen(),
                       ),
                     );
                   }

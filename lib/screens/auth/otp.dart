@@ -169,18 +169,37 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
                               )
                             ],
                           )
-                        : TextButton(
-                            style: TextButton.styleFrom(
-                              fixedSize: const Size.fromHeight(40),
-                            ),
-                            onPressed: () {},
-                            child: Text(
-                              'Resend',
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondary),
-                            ),
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Didn\'t recieve any code?',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary),
+                              ),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  fixedSize: const Size.fromHeight(40),
+                                  textStyle: const TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15),
+                                ),
+                                onPressed: () {},
+                                child: Text(
+                                  'Resend code',
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
+                                ),
+                              ),
+                            ],
                           ),
                     SizedBox(
                       height: _isCounting ? 30 : 10,
