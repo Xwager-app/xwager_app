@@ -9,7 +9,7 @@ final theme = ThemeData(
     brightness: Brightness.dark,
     seedColor: const Color.fromRGBO(2, 43, 105, 1),
   ),
-  textTheme: GoogleFonts.nunitoSansTextTheme().copyWith(
+  textTheme: GoogleFonts.jostTextTheme().copyWith(
     titleLarge: const TextStyle(
         decoration: TextDecoration.none, fontWeight: FontWeight.bold),
     bodyMedium: const TextStyle(decoration: TextDecoration.none),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_count_down/timer_count_down.dart';
+import 'package:xwager/screens/auth/create_tag.dart';
 import 'package:xwager/widgets/custom_keyboard.dart';
 
 class OTPPinFieldScreen extends StatefulWidget {
@@ -14,6 +15,7 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
   final pinController = TextEditingController();
   String number = '';
   bool _isCounting = true;
+  bool _isError = false;
 
   void onNumberPressed(String text) {
     if (text == 'delete') {
@@ -31,6 +33,7 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
 
       setState(() {
         pinController.text = number;
+        _isError = false;
       });
     }
   }
@@ -58,6 +61,19 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        leading: IconButton(
+          style: IconButton.styleFrom(
+            foregroundColor: const Color.fromRGBO(39, 67, 253, 1),
+            backgroundColor: const Color.fromRGBO(245, 244, 248, 1),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: Container(
         height: double.infinity,
@@ -96,6 +112,7 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
                       // onCompleted: (pin) => print(pin),
                       controller: pinController,
                       useNativeKeyboard: false,
+                      forceErrorState: _isError,
                       defaultPinTheme: defaultPinTheme.copyWith(
                         decoration: defaultPinTheme.decoration!.copyWith(
                             color: Theme.of(context).colorScheme.onPrimary),
@@ -182,7 +199,20 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
                     ),
                     minimumSize: const Size(double.infinity, 36),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (number.length < 4) {
+                      setState(() {
+                        _isError = true;
+                      });
+                      return;
+                    }
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => const CreateXwagerTagScreen(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'Next',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
