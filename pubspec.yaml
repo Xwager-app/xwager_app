@@ -39,6 +39,8 @@ dependencies:
   carousel_slider: ^4.2.1
   pinput: ^5.0.0
   timer_count_down: ^2.2.2
+  sleek_circular_slider: ^2.0.1
+  circular_gradient_spinner: ^0.0.3
 
 dev_dependencies:
   flutter_test:

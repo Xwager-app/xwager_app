@@ -12,6 +12,19 @@ class Register extends StatelessWidget {
         backgroundColor: Colors.white,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
         title: const Text('Create Account'),
+        leading: IconButton(
+          style: IconButton.styleFrom(
+            foregroundColor: const Color.fromRGBO(39, 67, 253, 1),
+            backgroundColor: const Color.fromRGBO(245, 244, 248, 1),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
