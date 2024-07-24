@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xwager/screens/auth/login.dart';
 
 class ProceedScreen extends StatelessWidget {
   const ProceedScreen({super.key});
@@ -42,7 +43,14 @@ class ProceedScreen extends StatelessWidget {
               ),
               minimumSize: const Size(double.infinity, 36),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) => const Login(),
+                ),
+              );
+            },
             child: Text(
               'Proceed',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(

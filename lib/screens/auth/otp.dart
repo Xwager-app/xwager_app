@@ -42,6 +42,8 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
 
+    double safeAreaTopPadding = MediaQuery.of(context).padding.top;
+
     final focusedBorderColor = Theme.of(context).colorScheme.onPrimary;
 
     final defaultPinTheme = PinTheme(
@@ -78,172 +80,175 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(color: Colors.white),
-        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: deviceHeight - 180),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'We need to confirm your email.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                    const Text(
-                      'Enter the 4-digit code we sent to',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color.fromRGBO(128, 128, 131, 1),
+            constraints:
+                BoxConstraints(minHeight: deviceHeight - safeAreaTopPadding),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'We need to confirm your email.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
-                    ),
-                    const Text(
-                      'deluluisthesolulu@domain.com',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black, fontSize: 14),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Pinput(
-                      // onCompleted: (pin) => print(pin),
-                      controller: pinController,
-                      useNativeKeyboard: false,
-                      forceErrorState: _isError,
-                      defaultPinTheme: defaultPinTheme.copyWith(
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary),
-                      ),
-                      followingPinTheme: defaultPinTheme.copyWith(
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                          color: const Color.fromRGBO(238, 238, 240, 1),
-                          // border: Border.all(color: focusedBorderColor),
+                      const Text(
+                        'Enter the 4-digit code we sent to',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color.fromRGBO(128, 128, 131, 1),
                         ),
                       ),
-                      focusedPinTheme: defaultPinTheme.copyWith(
-                        textStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary),
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                          border: Border.all(color: focusedBorderColor),
+                      const Text(
+                        'deluluisthesolulu@domain.com',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Pinput(
+                        // onCompleted: (pin) => print(pin),
+                        controller: pinController,
+                        useNativeKeyboard: false,
+                        forceErrorState: _isError,
+                        defaultPinTheme: defaultPinTheme.copyWith(
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                        ),
+                        followingPinTheme: defaultPinTheme.copyWith(
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                            color: const Color.fromRGBO(238, 238, 240, 1),
+                            // border: Border.all(color: focusedBorderColor),
+                          ),
+                        ),
+                        focusedPinTheme: defaultPinTheme.copyWith(
+                          textStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                            border: Border.all(color: focusedBorderColor),
+                          ),
+                        ),
+                        errorPinTheme: defaultPinTheme.copyWith(
+                          textStyle: const TextStyle(color: Colors.red),
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                            border: Border.all(color: Colors.red),
+                          ),
                         ),
                       ),
-                      errorPinTheme: defaultPinTheme.copyWith(
-                        textStyle: const TextStyle(color: Colors.red),
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                          border: Border.all(color: Colors.red),
-                        ),
+                      SizedBox(
+                        height: _isCounting ? 16 : 10,
                       ),
-                    ),
-                    SizedBox(
-                      height: _isCounting ? 16 : 10,
-                    ),
-                    _isCounting
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Resend code in ',
-                                style: TextStyle(
-                                  color: Color.fromRGBO(128, 128, 131, 1),
-                                ),
-                              ),
-                              Countdown(
-                                seconds: 30,
-                                build: (BuildContext context, double time) =>
-                                    Text(
-                                  // time.,
-                                  time.floor().toString(),
-                                  style: const TextStyle(
+                      _isCounting
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Resend code in ',
+                                  style: TextStyle(
                                     color: Color.fromRGBO(128, 128, 131, 1),
                                   ),
                                 ),
-                                interval: const Duration(milliseconds: 1000),
-                                onFinished: () {
-                                  setState(() {
-                                    _isCounting = false;
-                                  });
-                                },
-                              )
-                            ],
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Didn\'t recieve any code?',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
+                                Countdown(
+                                  seconds: 30,
+                                  build: (BuildContext context, double time) =>
+                                      Text(
+                                    // time.,
+                                    time.floor().toString(),
+                                    style: const TextStyle(
+                                      color: Color.fromRGBO(128, 128, 131, 1),
+                                    ),
+                                  ),
+                                  interval: const Duration(milliseconds: 1000),
+                                  onFinished: () {
+                                    setState(() {
+                                      _isCounting = false;
+                                    });
+                                  },
+                                )
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Didn\'t recieve any code?',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary),
+                                ),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    fixedSize: const Size.fromHeight(40),
+                                    textStyle: const TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 15),
+                                  ),
+                                  onPressed: () {},
+                                  child: Text(
+                                    'Resend code',
+                                    style: TextStyle(
                                         color: Theme.of(context)
                                             .colorScheme
                                             .onSecondary),
-                              ),
-                              TextButton(
-                                style: TextButton.styleFrom(
-                                  fixedSize: const Size.fromHeight(40),
-                                  textStyle: const TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15),
+                                  ),
                                 ),
-                                onPressed: () {},
-                                child: Text(
-                                  'Resend code',
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSecondary),
-                                ),
-                              ),
-                            ],
-                          ),
-                    SizedBox(
-                      height: _isCounting ? 30 : 10,
-                    ),
-                    CustomKeyboard(onNumberPressed: onNumberPressed)
-                  ],
-                ),
-                // /
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                    backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    minimumSize: const Size(double.infinity, 36),
-                  ),
-                  onPressed: () {
-                    if (number.length < 4) {
-                      setState(() {
-                        _isError = true;
-                      });
-                      return;
-                    }
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => const CreateXwagerTagScreen(),
+                              ],
+                            ),
+                      SizedBox(
+                        height: _isCounting ? 30 : 10,
                       ),
-                    );
-                  },
-                  child: Text(
-                    'Next',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
+                      CustomKeyboard(onNumberPressed: onNumberPressed)
+                    ],
                   ),
-                ),
-                // const SizedBox(
-                //   height: 40,
-                // )
-              ],
+                  // /
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 0),
+                      backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      minimumSize: const Size(double.infinity, 36),
+                    ),
+                    onPressed: () {
+                      if (number.length < 4) {
+                        setState(() {
+                          _isError = true;
+                        });
+                        return;
+                      }
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const CreateXwagerTagScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Next',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  // const SizedBox(
+                  //   height: 40,
+                  // )
+                ],
+              ),
             ),
           ),
         ),
