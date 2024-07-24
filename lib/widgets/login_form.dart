@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:xwager/screens/auth/otp.dart';
+import 'package:xwager/screens/auth/forgot_password.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -26,7 +25,7 @@ class _LoginFormState extends State<LoginForm> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (ctx) => const OTPPinFieldScreen(),
+        builder: (ctx) => const ForgotPasswordScreen(),
       ),
     );
   }
@@ -168,7 +167,14 @@ class _LoginFormState extends State<LoginForm> {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const ForgotPasswordScreen(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Forgot password?',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
