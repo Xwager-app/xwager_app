@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:xwager/screens/auth/referral_code.dart';
@@ -116,6 +113,8 @@ class _CreateUniquePinScreenState extends State<CreateUniquePinScreen> {
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
 
+    double safeAreaTopPadding = MediaQuery.of(context).padding.top;
+
     final focusedBorderColor = Theme.of(context).colorScheme.onPrimary;
 
     final defaultPinTheme = PinTheme(
@@ -159,100 +158,103 @@ class _CreateUniquePinScreenState extends State<CreateUniquePinScreen> {
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(color: Colors.white),
-        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: deviceHeight - 180),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Please kindly create a pin for claiming prize access authorization.',
-                      textAlign: TextAlign.center,
+            constraints:
+                BoxConstraints(minHeight: deviceHeight - safeAreaTopPadding),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Please kindly create a pin for claiming prize access authorization.',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: const Color.fromRGBO(17, 17, 17, 1),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Pinput(
+                        // onCompleted: (pin) => print(pin),
+                        controller: pinController,
+                        useNativeKeyboard: false,
+                        forceErrorState: _isError,
+                        defaultPinTheme: defaultPinTheme.copyWith(
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                        ),
+                        followingPinTheme: defaultPinTheme.copyWith(
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                            color: const Color.fromRGBO(238, 238, 240, 1),
+                            // border: Border.all(color: focusedBorderColor),
+                          ),
+                        ),
+                        focusedPinTheme: defaultPinTheme.copyWith(
+                          textStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                            border: Border.all(color: focusedBorderColor),
+                          ),
+                        ),
+                        errorPinTheme: defaultPinTheme.copyWith(
+                          textStyle: const TextStyle(color: Colors.red),
+                          decoration: defaultPinTheme.decoration!.copyWith(
+                            border: Border.all(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      CustomKeyboard(onNumberPressed: onNumberPressed)
+                    ],
+                  ),
+                  // /
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 0),
+                      backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      minimumSize: const Size(double.infinity, 36),
+                    ),
+                    onPressed: () {
+                      if (number.length < 4) {
+                        setState(() {
+                          _isError = true;
+                        });
+                        return;
+                      }
+                      _showModal();
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (ctx) => const CreateXwagerTagScreen(),
+                      //   ),
+                      // );
+                    },
+                    child: Text(
+                      'Submit',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: const Color.fromRGBO(17, 17, 17, 1),
+                          color: Colors.white,
                           fontSize: 16,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w600),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Pinput(
-                      // onCompleted: (pin) => print(pin),
-                      controller: pinController,
-                      useNativeKeyboard: false,
-                      forceErrorState: _isError,
-                      defaultPinTheme: defaultPinTheme.copyWith(
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary),
-                      ),
-                      followingPinTheme: defaultPinTheme.copyWith(
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                          color: const Color.fromRGBO(238, 238, 240, 1),
-                          // border: Border.all(color: focusedBorderColor),
-                        ),
-                      ),
-                      focusedPinTheme: defaultPinTheme.copyWith(
-                        textStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary),
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                          border: Border.all(color: focusedBorderColor),
-                        ),
-                      ),
-                      errorPinTheme: defaultPinTheme.copyWith(
-                        textStyle: const TextStyle(color: Colors.red),
-                        decoration: defaultPinTheme.decoration!.copyWith(
-                          border: Border.all(color: Colors.red),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    CustomKeyboard(onNumberPressed: onNumberPressed)
-                  ],
-                ),
-                // /
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                    backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    minimumSize: const Size(double.infinity, 36),
                   ),
-                  onPressed: () {
-                    if (number.length < 4) {
-                      setState(() {
-                        _isError = true;
-                      });
-                      return;
-                    }
-                    _showModal();
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (ctx) => const CreateXwagerTagScreen(),
-                    //   ),
-                    // );
-                  },
-                  child: Text(
-                    'Submit',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                // const SizedBox(
-                //   height: 40,
-                // )
-              ],
+                  // const SizedBox(
+                  //   height: 40,
+                  // )
+                ],
+              ),
             ),
           ),
         ),

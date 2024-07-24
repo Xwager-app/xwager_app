@@ -1,5 +1,6 @@
 import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
+import "package:xwager/screens/auth/login.dart";
 import "package:xwager/screens/auth/register.dart";
 
 class LastWelcome extends StatelessWidget {
@@ -112,7 +113,14 @@ class LastWelcome extends StatelessWidget {
                       ),
                       minimumSize: const Size(double.infinity, 36),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const Login(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Login',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(

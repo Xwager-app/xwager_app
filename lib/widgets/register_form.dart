@@ -35,10 +35,6 @@ class _RegisterFormState extends State<RegisterForm> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    print(_enteredNameController.text);
-    print(_enteredEmailController.text);
-    print(_enteredPasswordController.text);
-    print(_enteredPasswordConfirmController.text);
 
     Navigator.pushReplacement(
       context,
@@ -92,6 +88,8 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   void dispose() {
     super.dispose();
+    _enteredEmailController.dispose();
+    _enteredNameController.dispose();
     _enteredPasswordController.dispose();
     _enteredPasswordConfirmController.dispose();
   }
@@ -105,8 +103,8 @@ class _RegisterFormState extends State<RegisterForm> {
       _passwordContainsNumber,
       _passwordContainsSpecialCharacters
     ];
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+    return SizedBox(
+      // padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
       child: Form(
         key: _formKey,
         child: Column(
@@ -333,6 +331,8 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
+                elevation: 5,
+                shadowColor: Theme.of(context).colorScheme.onPrimary,
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
                 backgroundColor: Theme.of(context).colorScheme.onPrimary,
