@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:xwager/screens/auth/login.dart';
-import 'package:xwager/widgets/forgot_password_form.dart';
+import 'package:xwager/widgets/create_new_password_form.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key});
+class PasswordResetForm extends StatefulWidget {
+  const PasswordResetForm({super.key});
 
+  @override
+  State<StatefulWidget> createState() {
+    return _PasswordResetFormState();
+  }
+}
+
+class _PasswordResetFormState extends State<PasswordResetForm> {
   @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
@@ -12,12 +19,11 @@ class ForgotPasswordScreen extends StatelessWidget {
     double deviceHeight = MediaQuery.of(context).size.height;
 
     double safeAreaTopPadding = MediaQuery.of(context).padding.top;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        title: const Text('Forgot Password'),
+        title: const Text('Password Reset'),
         leading: IconButton(
           style: IconButton.styleFrom(
             foregroundColor: const Color.fromRGBO(39, 67, 253, 1),
@@ -46,11 +52,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                 BoxConstraints(minHeight: deviceHeight - safeAreaTopPadding),
             child: Container(
               padding: EdgeInsets.only(
-                  left: 20, right: 20, top: 30, bottom: keyboardSpace + 30),
+                  left: 20, right: 20, top: 30, bottom: keyboardSpace + 50),
               child: Column(
                 children: [
                   Text(
-                    'Please kindly input your email.',
+                    'Please kindly input a new password',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: const Color.fromRGBO(17, 17, 17, 1),
                         fontSize: 14,
@@ -59,7 +65,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  const ForgotPasswordForm()
+                  const CreateNewPasswordForm()
                 ],
               ),
             ),

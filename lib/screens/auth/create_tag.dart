@@ -88,7 +88,7 @@ class _CreateXwagerTagState extends State<CreateXwagerTagScreen> {
                 BoxConstraints(minHeight: deviceHeight - safeAreaTopPadding),
             child: Container(
               padding: EdgeInsets.only(
-                  left: 20, right: 20, top: 30, bottom: keyboardSpace + 30),
+                  left: 20, right: 20, top: 30, bottom: keyboardSpace + 50),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
