@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_count_down/timer_count_down.dart';
-import 'package:xwager/screens/auth/create_tag.dart';
+import 'package:xwager/screens/auth/password_reset_form.dart';
 import 'package:xwager/widgets/custom_keyboard.dart';
 
-class OTPPinFieldScreen extends StatefulWidget {
-  const OTPPinFieldScreen({super.key});
+class PasswordReset extends StatefulWidget {
+  const PasswordReset({super.key});
 
   @override
-  State<OTPPinFieldScreen> createState() => _OTPPinFieldScreenState();
+  State<StatefulWidget> createState() {
+    return _PasswordResetState();
+  }
 }
 
-class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
+class _PasswordResetState extends State<PasswordReset> {
   final pinController = TextEditingController();
   String number = '';
   bool _isCounting = true;
@@ -61,6 +63,7 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Password reset'),
         backgroundColor: Colors.white,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
         leading: IconButton(
@@ -85,8 +88,7 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
             constraints:
                 BoxConstraints(minHeight: deviceHeight - safeAreaTopPadding),
             child: Container(
-              padding: const EdgeInsets.only(
-                  top: 20, bottom: 50, right: 20, left: 20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -94,19 +96,7 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
                     // crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'We need to confirm your email.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 20),
-                      ),
-                      const Text(
-                        'Enter the 4-digit code we sent to',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color.fromRGBO(128, 128, 131, 1),
-                        ),
-                      ),
-                      const Text(
-                        'deluluisthesolulu@domain.com',
+                        'Enter the 4-digit code we sent to your email.',
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
@@ -212,6 +202,9 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
                       CustomKeyboard(onNumberPressed: onNumberPressed)
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
@@ -232,7 +225,7 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (ctx) => const CreateXwagerTagScreen(),
+                          builder: (ctx) => const PasswordResetForm(),
                         ),
                       );
                     },
@@ -244,6 +237,9 @@ class _OTPPinFieldScreenState extends State<OTPPinFieldScreen> {
                           fontWeight: FontWeight.w600),
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  )
                 ],
               ),
             ),

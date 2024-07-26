@@ -163,7 +163,8 @@ class _CreateUniquePinScreenState extends State<CreateUniquePinScreen> {
             constraints:
                 BoxConstraints(minHeight: deviceHeight - safeAreaTopPadding),
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(
+                  top: 20, bottom: 50, right: 20, left: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

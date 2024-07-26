@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xwager/screens/auth/password_reset.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({super.key});
@@ -18,12 +19,12 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (ctx) => const (),
-    //   ),
-    // );
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => const PasswordReset(),
+      ),
+    );
   }
 
   @override

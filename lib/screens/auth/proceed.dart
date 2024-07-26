@@ -8,7 +8,7 @@ class ProceedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+      padding: const EdgeInsets.only(top: 20, bottom: 50, left: 20, right: 20),
       child: Column(
         children: [
           Expanded(
