@@ -85,6 +85,10 @@ flutter:
     - assets/images/profile.png
     - assets/images/user.png
     - assets/images/add-fund.png
+    - assets/images/premier-league.png
+    - assets/images/currency.png
+    - assets/images/youtube.png
+    - assets/images/wager.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
