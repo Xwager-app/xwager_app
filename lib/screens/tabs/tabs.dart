@@ -57,34 +57,46 @@ class _TabsScreenState extends State<TabsScreen> {
               title: Text(activePageTitle),
             ),
       body: activePage,
-      bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Theme.of(context).colorScheme.onPrimary,
-          unselectedItemColor: const Color.fromRGBO(157, 155, 155, 1),
-          selectedLabelStyle: GoogleFonts.jost(
-              color: Theme.of(context).colorScheme.onPrimary,
-              fontWeight: FontWeight.w500),
-          backgroundColor: Colors.white,
-          currentIndex: _selectedPageIndex,
-          onTap: _selectPage,
-          // type: BottomNavigationBarType.fixed,
-          items: [
-            for (final item in navigationItems)
-              BottomNavigationBarItem(
-                  backgroundColor: Colors.white,
-                  activeIcon:
-                      // Transform.scale(
-                      //   scale: 1.15,
-                      Image.asset(item.icon,
-                          color: Theme.of(context).colorScheme.onPrimary),
-                  // ),
-                  icon: Image.asset(
-                    item.icon,
-                    color: const Color.fromRGBO(157, 155, 155, 1),
-                    width: 24,
-                    height: 24,
-                  ),
-                  label: item.label),
-          ]),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+            selectedItemColor: Theme.of(context).colorScheme.onPrimary,
+            unselectedItemColor: const Color.fromRGBO(157, 155, 155, 1),
+            selectedLabelStyle: GoogleFonts.jost(
+                color: Theme.of(context).colorScheme.onPrimary,
+                fontWeight: FontWeight.w500),
+            backgroundColor: Colors.white,
+            currentIndex: _selectedPageIndex,
+            onTap: _selectPage,
+            // type: BottomNavigationBarType.fixed,
+            items: [
+              for (final item in navigationItems)
+                BottomNavigationBarItem(
+                    backgroundColor: Colors.white,
+                    activeIcon:
+                        // Transform.scale(
+                        //   scale: 1.15,
+                        Image.asset(item.icon,
+                            color: Theme.of(context).colorScheme.onPrimary),
+                    // ),
+                    icon: Image.asset(
+                      item.icon,
+                      color: const Color.fromRGBO(157, 155, 155, 1),
+                      width: 24,
+                      height: 24,
+                    ),
+                    label: item.label),
+            ]),
+      ),
     );
   }
 }
