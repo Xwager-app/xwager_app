@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xwager/widgets/home/home_button_list.dart';
 import 'package:xwager/widgets/home/home_header.dart';
+import 'package:xwager/widgets/home/new_wager_button.dart';
 import 'package:xwager/widgets/home/positioned_card.dart';
 import 'package:xwager/widgets/home/recent_wager.dart';
 import 'package:xwager/widgets/home/wallet_card.dart';
@@ -79,55 +80,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-                // top: deviceHeight - 130,
-                bottom: 20,
-                right: 10,
-                child: InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 10),
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 5,
-                        ),
-                        BoxShadow(
-                          color: Colors.white,
-                          blurRadius: 10,
-                        )
-                      ],
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    child: Row(children: [
-                      Text(
-                        'New Wager',
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/images/wager.png',
-                          ),
-                        ),
-                      ),
-                    ]),
-                  ),
-                )),
+            const NewWagerButton()
           ],
         ),
       ),
