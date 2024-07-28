@@ -8,7 +8,7 @@ final List<Xwager> xWagers = [
       xwagerType: XwagerType.head2Head,
       users: ['@Clarkkelvin', '@David'],
       amount: 5000,
-      wagerResult: WagerResult.win),
+      wagerState: WagerState.win),
   Xwager(
       id: 2,
       imgPath: 'assets/images/premier-league.png',
@@ -16,7 +16,7 @@ final List<Xwager> xWagers = [
       xwagerType: XwagerType.group,
       users: ['@Daniel', '@David'],
       amount: 15000,
-      wagerResult: WagerResult.win),
+      wagerState: WagerState.active),
   Xwager(
       id: 3,
       imgPath: 'assets/images/premier-league.png',
@@ -24,7 +24,7 @@ final List<Xwager> xWagers = [
       xwagerType: XwagerType.head2Head,
       users: ['@Clarkkelvin', '@David'],
       amount: 500,
-      wagerResult: WagerResult.loss),
+      wagerState: WagerState.loss),
   Xwager(
       id: 4,
       imgPath: 'assets/images/premier-league.png',
@@ -32,5 +32,5 @@ final List<Xwager> xWagers = [
       xwagerType: XwagerType.head2Head,
       users: ['@Clarkkelvin', '@David'],
       amount: 3000,
-      wagerResult: WagerResult.win)
+      wagerState: WagerState.win)
 ];

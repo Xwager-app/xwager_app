@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:xwager/data/xwagers.dart';
 import 'package:xwager/models/xwager.dart';
 
@@ -15,10 +14,25 @@ class RecentXwagerList extends StatefulWidget {
 class _RecentXwagerListState extends State<RecentXwagerList> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 250,
-      padding: const EdgeInsets.all(0),
-      child: ListView.builder(
+    Widget mainContent = Center(
+      child: Column(children: [
+        Image.asset('assets/images/empty.png'),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          textAlign: TextAlign.center,
+          'You currently do not have any recent wagers',
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+        )
+      ]),
+    );
+
+    if (xWagers.isNotEmpty) {
+      mainContent = ListView.builder(
         padding: const EdgeInsets.all(0),
         itemCount: xWagers.length,
         itemBuilder: (ctx, index) => Column(
@@ -51,9 +65,11 @@ class _RecentXwagerListState extends State<RecentXwagerList> {
                     right: 0,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: xWagers[index].wagerResult == WagerResult.win
+                        color: xWagers[index].wagerState == WagerState.win
                             ? const Color.fromRGBO(4, 193, 0, 1)
-                            : const Color.fromRGBO(193, 0, 0, 1),
+                            : xWagers[index].wagerState == WagerState.active
+                                ? Theme.of(context).colorScheme.onPrimary
+                                : const Color.fromRGBO(193, 0, 0, 1),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       width: 10,
@@ -77,13 +93,15 @@ class _RecentXwagerListState extends State<RecentXwagerList> {
                       .copyWith(fontSize: 10, color: Colors.black),
                 ),
                 trailing: Text(
-                  '${xWagers[index].wagerResult == WagerResult.win ? '+' : '-'}\$${xWagers[index].amount}',
+                  '${xWagers[index].wagerState == WagerState.win ? '+' : xWagers[index].wagerState == WagerState.active ? '' : '-'}\$${xWagers[index].amount}',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: xWagers[index].wagerResult == WagerResult.win
+                        color: xWagers[index].wagerState == WagerState.win
                             ? const Color.fromRGBO(4, 193, 0, 1)
-                            : const Color.fromRGBO(193, 0, 0, 1),
+                            : xWagers[index].wagerState == WagerState.active
+                                ? Theme.of(context).colorScheme.onPrimary
+                                : const Color.fromRGBO(193, 0, 0, 1),
                       ),
                 ),
               ),
@@ -93,7 +111,10 @@ class _RecentXwagerListState extends State<RecentXwagerList> {
             )
           ],
         ),
-      ),
-    );
+      );
+    }
+
+    return Container(
+        height: 250, padding: const EdgeInsets.all(0), child: mainContent);
   }
 }
