@@ -30,7 +30,7 @@ class HomeHeader extends StatelessWidget {
               width: 10,
             ),
             Text(
-              'Heyyo, @Clarkkelvin',
+              'Hey, @Clarkkelvin',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.onPrimary, fontSize: 16),
             ),
