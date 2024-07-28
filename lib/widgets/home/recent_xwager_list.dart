@@ -15,7 +15,7 @@ class _RecentXwagerListState extends State<RecentXwagerList> {
   @override
   Widget build(BuildContext context) {
     Widget mainContent = Center(
-      child: Column(children: [
+      child: Column(mainAxisSize: MainAxisSize.min, children: [
         Image.asset('assets/images/empty.png'),
         const SizedBox(
           height: 10,
@@ -31,7 +31,7 @@ class _RecentXwagerListState extends State<RecentXwagerList> {
       ]),
     );
 
-    if (xWagers.isNotEmpty) {
+    if (xWagers.isEmpty) {
       mainContent = ListView.builder(
         padding: const EdgeInsets.all(0),
         itemCount: xWagers.length,
