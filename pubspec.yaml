@@ -78,6 +78,18 @@ flutter:
     - assets/images/facebook.png
     - assets/images/good.png
     - assets/images/proceed.png
+    - assets/images/home-01.png
+    - assets/images/xwager.png
+    - assets/images/history.png
+    - assets/images/wallet.png
+    - assets/images/profile.png
+    - assets/images/user.png
+    - assets/images/add-fund.png
+    - assets/images/premier-league.png
+    - assets/images/currency.png
+    - assets/images/youtube.png
+    - assets/images/wager.png
+    - assets/images/empty.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

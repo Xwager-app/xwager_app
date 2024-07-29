@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xwager/screens/auth/forgot_password.dart';
+import 'package:xwager/screens/tabs/tabs.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -25,7 +26,7 @@ class _LoginFormState extends State<LoginForm> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (ctx) => const ForgotPasswordScreen(),
+        builder: (ctx) => const TabsScreen(),
       ),
     );
   }

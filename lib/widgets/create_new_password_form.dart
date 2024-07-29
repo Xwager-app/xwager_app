@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:xwager/data/password_validators.dart";
+import "package:xwager/screens/auth/login.dart";
 import "package:xwager/screens/auth/otp.dart";
 import "package:xwager/widgets/password_validator.dart";
 
@@ -29,7 +30,7 @@ class _CreateNewPasswordFormState extends State<CreateNewPasswordForm> {
   bool _passwordContainsNumber = false;
   bool _passwordContainsSpecialCharacters = false;
 
-  void _submitCreateAccForm() {
+  void _submitResetPasswordForm() {
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -37,7 +38,7 @@ class _CreateNewPasswordFormState extends State<CreateNewPasswordForm> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (ctx) => const OTPPinFieldScreen(),
+        builder: (ctx) => const Login(),
       ),
     );
   }
@@ -257,7 +258,7 @@ class _CreateNewPasswordFormState extends State<CreateNewPasswordForm> {
                 ),
                 minimumSize: const Size(double.infinity, 36),
               ),
-              onPressed: _submitCreateAccForm,
+              onPressed: _submitResetPasswordForm,
               child: Text(
                 'Confirm',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
