@@ -84,7 +84,62 @@ class Head2Head extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          // InkWell(
+          //   onTap: () {
+          //     // Handle tap
+          //   },
+          // child: const Row(
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Text('Add Hashtag'),
+          //       Icon(Icons.arrow_drop_down_circle_sharp)
+          //     ]),
+          // )
+          OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(229, 235, 240, 1),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: const BorderSide(color: Colors.black),
+                ),
+              ),
+              onPressed: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Add Hashtag',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: 30,
+                    height: 30,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(100),
+                      ),
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                ],
+              ))
         ],
       ),
     );
