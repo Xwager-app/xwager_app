@@ -12,6 +12,11 @@ class CreateNewWager extends StatefulWidget {
 }
 
 class _CreateNewWagerState extends State<CreateNewWager> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _enteredXwagerTitleController = TextEditingController();
+  final _enteredXwagerTermsController = TextEditingController();
+
   XwagerType xwagerType = XwagerType.head2Head;
 
   XwagerCategory? _xwagerCategory;
@@ -23,16 +28,23 @@ class _CreateNewWagerState extends State<CreateNewWager> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _enteredXwagerTermsController.dispose();
+    _enteredXwagerTitleController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             color: Colors.white,
             width: double.infinity,
             child: Container(
-              clipBehavior: Clip.hardEdge,
+              clipBehavior: Clip.antiAlias,
               width: double.infinity,
               decoration: BoxDecoration(
                 border: Border.all(
@@ -50,12 +62,14 @@ class _CreateNewWagerState extends State<CreateNewWager> {
                             ? Theme.of(context).colorScheme.onPrimary
                             : Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            topRight: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
+                            topLeft: Radius.circular(
+                                xwagerType == XwagerType.head2Head ? 0 : 10),
+                            bottomLeft: Radius.circular(
+                                xwagerType == XwagerType.head2Head ? 0 : 10),
+                            topRight: const Radius.circular(0),
+                            bottomRight: const Radius.circular(0),
                           ),
                         ),
                       ),
@@ -83,12 +97,14 @@ class _CreateNewWagerState extends State<CreateNewWager> {
                             ? Theme.of(context).colorScheme.onPrimary
                             : Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: const RoundedRectangleBorder(
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                            topLeft: const Radius.circular(0),
+                            bottomLeft: const Radius.circular(0),
+                            topRight: Radius.circular(
+                                xwagerType == XwagerType.group ? 0 : 10),
+                            bottomRight: Radius.circular(
+                                xwagerType == XwagerType.group ? 0 : 10),
                           ),
                         ),
                       ),
@@ -114,9 +130,11 @@ class _CreateNewWagerState extends State<CreateNewWager> {
             ),
           ),
           Head2Head(
-            categoryItem: _xwagerCategory,
-            onChooseCategory: _onChooseCategory,
-          )
+              categoryItem: _xwagerCategory,
+              onChooseCategory: _onChooseCategory,
+              formKey: _formKey,
+              titleController: _enteredXwagerTitleController,
+              termsController: _enteredXwagerTermsController)
         ],
       ),
     );
