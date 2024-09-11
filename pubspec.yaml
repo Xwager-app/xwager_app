@@ -90,6 +90,7 @@ flutter:
     - assets/images/youtube.png
     - assets/images/wager.png
     - assets/images/empty.png
+    - assets/images/premier-league-logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
