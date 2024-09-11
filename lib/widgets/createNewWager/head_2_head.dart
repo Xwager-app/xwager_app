@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:xwager/data/wager_categories.dart';
 import 'package:xwager/models/hashtag.dart';
 import 'package:xwager/models/xwager.dart';
@@ -12,6 +13,7 @@ class Head2Head extends StatelessWidget {
       required this.formKey,
       required this.titleController,
       required this.termsController,
+      required this.stakeController,
       required this.onAddHashtags});
 
   final XwagerCategory? categoryItem;
@@ -19,6 +21,7 @@ class Head2Head extends StatelessWidget {
   final GlobalKey formKey;
   final TextEditingController titleController;
   final TextEditingController termsController;
+  final TextEditingController stakeController;
 
   final Function(List<Hashtag> hashtags) onAddHashtags;
 
@@ -311,7 +314,7 @@ class Head2Head extends StatelessWidget {
                             height: 5,
                           ),
                           TextFormField(
-                            controller: titleController,
+                            controller: stakeController,
                             decoration: InputDecoration(
                               prefixIcon: SizedBox(
                                 width: 10,
@@ -362,6 +365,10 @@ class Head2Head extends StatelessWidget {
                               //           fontSize: 16),
                               // ),
                             ),
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'^\d+\.?\d*')),
+                            ],
                             keyboardType: TextInputType.number,
                             validator: (value) {
                               if (value == null ||
