@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:xwager/models/hashtag.dart';
 import 'package:xwager/models/xwager.dart';
+import 'package:xwager/widgets/createNewWager/group.dart';
 import 'package:xwager/widgets/createNewWager/head_2_head.dart';
 
 class CreateNewWager extends StatefulWidget {
@@ -21,6 +23,14 @@ class _CreateNewWagerState extends State<CreateNewWager> {
 
   XwagerCategory? _xwagerCategory;
 
+  List<Hashtag> _hashtagList = [];
+
+  void _onAddHashtags(List<Hashtag> hashtags) {
+    setState(() {
+      _hashtagList = [...hashtags];
+    });
+  }
+
   void _onChooseCategory(XwagerCategory category) {
     setState(() {
       _xwagerCategory = category;
@@ -36,6 +46,8 @@ class _CreateNewWagerState extends State<CreateNewWager> {
 
   @override
   Widget build(BuildContext context) {
+    print(_hashtagList.length);
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -129,12 +141,15 @@ class _CreateNewWagerState extends State<CreateNewWager> {
               ),
             ),
           ),
-          Head2Head(
-              categoryItem: _xwagerCategory,
-              onChooseCategory: _onChooseCategory,
-              formKey: _formKey,
-              titleController: _enteredXwagerTitleController,
-              termsController: _enteredXwagerTermsController)
+          xwagerType == XwagerType.head2Head
+              ? Head2Head(
+                  categoryItem: _xwagerCategory,
+                  onChooseCategory: _onChooseCategory,
+                  formKey: _formKey,
+                  titleController: _enteredXwagerTitleController,
+                  termsController: _enteredXwagerTermsController,
+                  onAddHashtags: _onAddHashtags)
+              : const Group()
         ],
       ),
     );
