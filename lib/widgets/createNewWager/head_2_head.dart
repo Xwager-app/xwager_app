@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:xwager/data/wager_categories.dart';
+import 'package:xwager/models/hashtag.dart';
 import 'package:xwager/models/xwager.dart';
+import 'package:xwager/widgets/createNewWager/hashtag_modal.dart';
 
 class Head2Head extends StatelessWidget {
   const Head2Head(
@@ -9,7 +11,8 @@ class Head2Head extends StatelessWidget {
       required this.onChooseCategory,
       required this.formKey,
       required this.titleController,
-      required this.termsController});
+      required this.termsController,
+      required this.onAddHashtags});
 
   final XwagerCategory? categoryItem;
   final Function(XwagerCategory category) onChooseCategory;
@@ -17,8 +20,19 @@ class Head2Head extends StatelessWidget {
   final TextEditingController titleController;
   final TextEditingController termsController;
 
+  final Function(List<Hashtag> hashtags) onAddHashtags;
+
   @override
   Widget build(BuildContext context) {
+    void openHashtagModal() {
+      showModalBottomSheet(
+        useSafeArea: true,
+        isScrollControlled: true,
+        context: context,
+        builder: (ctx) => HashTagModal(onAddHashtagsHandler: onAddHashtags),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       color: Colors.white,
@@ -94,7 +108,7 @@ class Head2Head extends StatelessWidget {
                           ))
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -110,7 +124,7 @@ class Head2Head extends StatelessWidget {
                 side: const BorderSide(color: Colors.black),
               ),
             ),
-            onPressed: () {},
+            onPressed: openHashtagModal,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
