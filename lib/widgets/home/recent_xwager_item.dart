@@ -38,7 +38,7 @@ class _RecentXwagerItemState extends State<RecentXwagerItem>
   }
 
   void _startAnimationWithDelay() async {
-    await Future.delayed(Duration(milliseconds: widget.itemIndex * 150));
+    await Future.delayed(Duration(milliseconds: widget.itemIndex * 100));
     _animationController.forward();
   }
 
@@ -104,12 +104,28 @@ class _RecentXwagerItemState extends State<RecentXwagerItem>
                       .bodyMedium!
                       .copyWith(fontSize: 16, color: Colors.black),
                 ),
-                subtitle: Text(
-                  '${widget.item.users[0]}...',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(fontSize: 10, color: Colors.black),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      widget.item.xwagerType == XwagerType.group
+                          ? "Group"
+                          : "Head-2-Head",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(fontSize: 10, color: Colors.black),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      '${widget.item.users[0]}...',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(fontSize: 10, color: Colors.black),
+                    ),
+                  ],
                 ),
                 trailing: Text(
                   '${widget.item.wagerState == WagerState.win ? '+' : widget.item.wagerState == WagerState.active ? '' : '-'}\$${widget.item.amount}',

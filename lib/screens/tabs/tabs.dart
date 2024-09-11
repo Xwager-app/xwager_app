@@ -32,7 +32,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     if (_selectedPageIndex == 1) {
       activePage = const XwagerScreen();
-      activePageTitle = 'Xwager';
+      activePageTitle = 'Create New Xwager';
     }
 
     if (_selectedPageIndex == 2) {
@@ -54,7 +54,28 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: activePageTitle == null
           ? null
           : AppBar(
-              title: Text(activePageTitle),
+              backgroundColor: Colors.white,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              title: Text(
+                activePageTitle,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600),
+              ),
+              // leading: IconButton(
+              //   style: IconButton.styleFrom(
+              //     foregroundColor: const Color.fromRGBO(39, 67, 253, 1),
+              //     backgroundColor: const Color.fromRGBO(245, 244, 248, 1),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //     ),
+              //   ),
+              //   onPressed: () {
+              //     Navigator.pop(context);
+              //   },
+              //   icon: const Icon(Icons.arrow_back),
+              // ),
             ),
       body: activePage,
       bottomNavigationBar: Container(

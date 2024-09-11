@@ -1,4 +1,4 @@
-enum Category { sports, crypto, stocks, entertainment }
+enum XwagerCategory { sports, crypto, stocks, entertainment }
 
 enum XwagerType { head2Head, group }
 
@@ -16,7 +16,7 @@ class Xwager {
 
   final int id;
   final String imgPath;
-  final Category category;
+  final XwagerCategory category;
   final XwagerType xwagerType;
   final List<String> users;
   final WagerState wagerState;
