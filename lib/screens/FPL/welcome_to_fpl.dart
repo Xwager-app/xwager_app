@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xwager/screens/FPL/welcome_to_fpl_step1.dart';
 
 class WelcomeToFPL extends StatelessWidget {
   const WelcomeToFPL({super.key});
@@ -61,7 +62,14 @@ class WelcomeToFPL extends StatelessWidget {
               height: 40,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (ctx) => const WelcomeToFPLContestStep1(),
+                  ),
+                );
+              },
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.onPrimary,

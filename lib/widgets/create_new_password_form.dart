@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:xwager/data/password_validators.dart";
 import "package:xwager/screens/auth/login.dart";
-import "package:xwager/screens/auth/otp.dart";
 import "package:xwager/widgets/password_validator.dart";
 
 class CreateNewPasswordForm extends StatefulWidget {

@@ -18,6 +18,7 @@ class _CreateNewWagerState extends State<CreateNewWager> {
 
   final _enteredXwagerTitleController = TextEditingController();
   final _enteredXwagerTermsController = TextEditingController();
+  final _enteredXwagerStakeController = TextEditingController();
 
   XwagerType xwagerType = XwagerType.head2Head;
 
@@ -148,6 +149,7 @@ class _CreateNewWagerState extends State<CreateNewWager> {
                   formKey: _formKey,
                   titleController: _enteredXwagerTitleController,
                   termsController: _enteredXwagerTermsController,
+                  stakeController: _enteredXwagerStakeController,
                   onAddHashtags: _onAddHashtags)
               : const Group()
         ],
